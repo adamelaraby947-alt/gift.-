@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هدية مروه الخاصة 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --light-pink: #ffe6eb; /* بينك فاتح ناعم للخلفية الأساسية */
+            --pastel-pink: #ffccd5;
+            --accent-pink: #ff85a1;
+            --dark-pink: #800e2b;
+            --deep-background: radial-gradient(circle, #4a0d1b 0%, #24000a 100%);
+            --neon-cyan: #00f3ff;
+            --neon-pink: #ff0055;
+            --burgundy-soft: linear-gradient(135deg, #800020 0%, #b3002d 100%); /* نبيتي سوفت ناعم */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--light-pink);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* الخلفية اللطيفة لشاشة الدخول - قلوب ونجوم متساقطة */
+        .stars-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: blink 3s infinite ease-in-out;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        /* 1. شاشة تسجيل الدخول بالخلفية البينك الفاتح */
+        #login-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #fff0f3 0%, #ffe6eb 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+            padding: 20px;
+        }
+
+        /* ظرف الرسالة البينك في أبيض مع تاتش نبيتي */
+        .envelope-container {
+            width: 220px;
+            height: 150px;
+            position: relative;
+            background: #ffffff;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.15);
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-bottom: 4px solid #800020; /* حتة نبيتي في الظرف */
+        }
+
+        .envelope-container:hover {
+            transform: translateY(-5px);
+        }
+
+        /* غطاء الظرف */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 110px solid transparent;
+            border-right: 110px solid transparent;
+            border-top: 85px solid #ff85a1;
+            transform-origin: top;
+            transition: transform 0.4s ease;
+            z-index: 5;
+        }
+
+        /* الجزء الداخلي من الظرف */
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff0f3;
+            border-radius: 0 0 15px 15px;
+            border: 3px solid #ffccd5;
+            z-index: 4;
+            overflow: hidden;
+        }
+
+        .envelope-pocket::before {
+            content: '💖';
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 35px;
+        }
+
+        /* كارت البوابة الشفاف تماماً تكنولوجي ويبان من تحته البينك */
+        .login-card {
+            background: rgba(255, 255, 255, 0.25); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 32px 0 rgba(255, 182, 193, 0.2);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .login-card h2 {
+            font-size: 1.6rem;
+            color: #800020; /* نبيتي هادي ومميز */
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* حقل الباسورد الشفاف */
+        .input-group input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid rgba(128, 0, 32, 0.3);
+            border-radius: 50px;
+            outline: none;
+            font-size: 1.1rem;
+            text-align: center;
+            font-family: 'Cairo', sans-serif;
+            background: rgba(255, 255, 255, 0.6);
+            color: #800020;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.3);
+        }
+
+        /* زرار نبيتي سوفت ناعم تكنولوجي وبلمسة نيون خفيفة */
+        .login-btn {
+            background: var(--burgundy-soft);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(128, 0, 32, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(128, 0, 32, 0.5), 0 0 15px rgba(255, 0, 85, 0.4);
+        }
+
+        .error-msg {
+            color: #d32f2f;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            display: none;
+            font-weight: 600;
+        }
+
+        /* 2. الصفحة الرئيسية للمحتوى */
+        #main-app {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            background: var(--deep-background);
+            padding: 40px 20px 140px 20px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* كارت "إلى أختي" */
+        .intro-card {
+            width: 100%;
+            background: linear-gradient(135deg, #ff477e, #d81b60);
+            border-radius: 20px;
+            padding: 25px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .intro-card h3 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+
+        .intro-card .card-divider {
+            width: 80%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 15px auto;
+        }
+
+        .open-message-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 10px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 5px;
+        }
+
+        .open-message-btn:hover {
+            background: #ffffff;
+            color: #d81b60;
+            transform: scale(1.05);
+        }
+
+        /* 3. نافذة الرسالة المنبثقة (Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 200;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .letter-modal {
+            background: #faf4e8;
+            width: 100%;
+            max-width: 520px;
+            max-height: 80vh;
+            border-radius: 25px;
+            padding: 35px 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            overflow-y: auto;
+            position: relative;
+            border: 4px double #ffccd5;
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .letter-modal.active {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 28px;
+            color: #880e4f;
+            cursor: pointer;
+            background: #ffccd5;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: #ff85a1;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .letter-title {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 2.2rem;
+            color: #800e2b;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #ff85a1;
+            padding-bottom: 10px;
+        }
+
+        .letter-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #3a2228;
+            text-align: right;
+            white-space: pre-line;
+            padding: 0 5px;
+        }
+
+        .letter-signature {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #d81b60;
+            text-align: left;
+            margin-top: 25px;
+            border-top: 1px dashed #ff85a1;
+            padding-top: 15px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        /* 4. قسم ذكريات حصلت في السنة */
+        .memories-title {
+            color: #ffccd5;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.6rem;
+            margin: 20px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .memories-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #ff85a1;
+            margin: 8px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* شبكة الكروت المعدلة */
+        .memories-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* كارت البولاروايد مع إطار ولمسات نيون عند التحويم */
+        .polaroid-card {
+            background: white;
+            padding: 16px 16px 24px 16px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            transform: rotate(var(--rotation, 0deg));
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            border: 2px solid transparent;
+        }
+
+        .polaroid-card:hover {
+            transform: scale(1.03) rotate(0deg) !important;
+            box-shadow: 0 0 20px var(--neon-cyan), 0 15px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--neon-cyan); /* توهج سيان نيون */
+            z-index: 20;
+        }
+
+        .polaroid-image-wrapper {
+            width: 100%;
+            aspect-ratio: 1.15;
+            background: #fafafa;
+            border: 1px solid #f0f0f0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .polaroid-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* الفوتر الموحد لجميع الكروت (لحظات لا تنسى) */
+        .polaroid-caption {
+            font-family: 'Cairo', sans-serif;
+            text-align: center;
+            margin-top: 18px;
+            font-size: 1.15rem;
+            color: #333333;
+            font-weight: 600;
+        }
+
+        /* 5. مشغل الموسيقى الثابت في الأسفل */
+        .music-player-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 12px 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 150;
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            direction: ltr;
+        }
+
+        .player-info {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            margin-right: 15px;
+            max-width: 150px;
+        }
+
+        .player-info .song-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #800e2b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .player-info .song-artist {
+            font-size: 0.8rem;
+            color: #ff85a1;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-grow: 1;
+            margin: 0 15px;
+        }
+
+        .play-btn {
+            background: #d81b60;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.3);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: #ff0a54;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-grow: 1;
+            font-size: 0.75rem;
+            color: #800e2b;
+            font-family: sans-serif;
+        }
+
+        .progress-bar-wrapper {
+            flex-grow: 1;
+            height: 6px;
+            background: #ffccd5;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #d81b60;
+            border-radius: 10px;
+            width: 0%;
+            position: relative;
+        }
+
+        .progress-knob {
+            width: 12px;
+            height: 12px;
+            background: #800e2b;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            transform: translate(50%, -50%);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* قلوب متناثرة عند الإجابة الصحيحة */
+        .celebration-heart {
+            position: fixed;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: burst 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes burst {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- مشغل الصوت المخفي -->
+    <audio id="audio-element" src="music.mp3" loop></audio>
+
+    <!-- 1. شاشة تسجيل الدخول بالتصميم البينك اللطيف -->
+    <div id="login-screen">
+        <div class="stars-bg" id="stars-container"></div>
+        
+        <!-- ظرف الرسالة الكيوت -->
+        <div class="envelope-container" onclick="focusPassword()">
+            <div class="envelope-flap" id="env-flap"></div>
+            <div class="envelope-pocket"></div>
+        </div>
+
+        <!-- البوابة الشفافة تماماً بتأثير زجاجي والزرار النبيتي السوفت التكنولوجي -->
+        <div class="login-card">
+            <h2>✨ بوابة مروه الخاصة ✨</h2>
+            <div class="input-group">
+                <input type="password" id="password-input" placeholder="اكتبي الباسورد هنا..." autocomplete="off">
+                <div class="error-msg" id="error-message">الباسورد مش مظبوط، جربي تاني يا مروه 💖</div>
+            </div>
+            <button class="login-btn" onclick="verifyPassword()">💖 افتحي الهدية</button>
+        </div>
+    </div>
+
+    <!-- 2. التطبيق والصفحة الرئيسية المليئة بالذكريات والدراما الجذابة -->
+    <div id="main-app">
+        <div class="app-container">
+            
+            <!-- الكارت الرئيسي "إلى أختي" -->
+            <div class="intro-card">
+                <h3>إلى أختي الحبيبة ❤️</h3>
+                <div class="card-divider"></div>
+                <button class="open-message-btn" onclick="openLetterModal()">فتح الرسالة ✉️</button>
+            </div>
+
+            <!-- عنوان الذكريات -->
+            <h2 class="memories-title">ذكريات حصلت في السنة 📸</h2>
+
+            <!-- شبكة الذكريات الـ 3 كروت - كلهم جاهزين للصور دلوقتي وبنفس الستايل والفوتر الموحد -->
+            <div class="memories-grid">
+                
+                <!-- كارت 1: الصورة الأولى -->
+                <div class="polaroid-card" style="--rotation: -3deg;">
+                    <div class="polaroid-image-wrapper">
+                        <!-- ضع رابط صورتك الأولى هنا في الـ src -->
+                        <img src="https://i.postimg.cc/mDrTgbxL/IMG-20260611-192450.jpg" alt="لحظة 1">
+                    </div>
+                    <div class="polaroid-caption">لحظات لا تنسى</div>
+                </div>
+
+                <!-- كارت 2: الصورة الثانية (بدل التصميم النبيتي القديم) -->
+                <div class="polaroid-card" style="--rotation: 2deg;">
+                    <div class="polaroid-image-wrapper">
+                        <!-- ضع رابط صورتك الثانية هنا في الـ src -->
+                        <img src="https://i.postimg.cc/9MfcQW3F/IMG-20260611-192401.jpgا" alt="لحظة 2">
+                    </div>
+                    <div class="polaroid-caption">لحظات لا تنسى</div>
+                </div>
+
+                <!-- كارت 3: الصورة الثالثة (بدل الشاشة السوداء القديمة) -->
+                <div class="polaroid-card" style="--rotation: -1.5deg;">
+                    <div class="polaroid-image-wrapper">
+                        <!-- ضع رابط صورتك الثالثة هنا في الـ src -->
+                        <img src="https://i.postimg.cc/VNgYwJVj/IMG-20260611-192452.jpg" alt="لحظة 3">
+                    </div>
+                    <div class="polaroid-caption">لحظات لا تنسى</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 3. نافذة عرض الرسالة المنبثقة بالتايبنج أنيميشن -->
+    <div class="modal-overlay" id="letter-modal-overlay">
+        <div class="letter-modal" id="letter-modal">
+            <span class="close-modal" onclick="closeLetterModal()">&times;</span>
+            <h1 class="letter-title">✨ مروه ✨</h1>
+            <div class="letter-body" id="typed-text"></div>
+            <div class="letter-signature" id="sig">🤍 أخوكي... ادم</div>
+        </div>
+    </div>
+
+    <!-- 4. بار مشغل الموسيقى الفخم الثابت بالأسفل -->
+    <div class="music-player-bar">
+        <!-- معلومات الأغنية -->
+        <div class="player-info">
+            <span class="song-title">موسيقى الهدية 🎵</span>
+            <span class="song-artist">آدم</span>
+        </div>
+
+        <!-- أزرار التحكم ومجرى الصوت -->
+        <div class="player-controls">
+            <button class="play-btn" id="play-pause-btn" onclick="togglePlay()">
+                <svg id="play-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                <svg id="pause-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display: none;">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+            </button>
+
+            <!-- شريط تقدم الموسيقى والزمن -->
+            <div class="progress-container">
+                <span id="current-time">00:00</span>
+                <div class="progress-bar-wrapper" id="progress-wrapper" onclick="seekAudio(event)">
+                    <div class="progress-fill" id="progress-fill">
+                        <div class="progress-knob"></div>
+                    </div>
+                </div>
+                <span id="total-time">03:00</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // إعداد النجوم المتساقطة
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            const totalStars = 40;
+            for (let i = 0; i < totalStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 4 + 2;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(star);
+            }
+        }
+        createStars();
+
+        function focusPassword() {
+            document.getElementById('password-input').focus();
+        }
+
+        // الرسالة الطويلة
+        const message = `إلى أختي الحبيبة.. ❤️
+
+وخلاص يا أختي وصلتي لنهاية رحلة تالتة ثانوي، الرحلة اللي كان فيها تعب وسهر وضغط وأيام صعبة، ويمكن لحظات حسيتِ فيها إنك مش قادرة تكملي، لكن الحمد لله وصلتي للنهاية. أنا فخور بيكي جدًا، لأنك عملتي اللي عليكي واجتهدتي بكل اللي تقدري عليه، وده في حد ذاته نجاح كبير.
+
+دلوقتي مفيش داعي لأي خوف أو قلق، لأن اللي كان بإيدك عملتيه، والباقي كله عند ربنا سبحانه وتعالى، وهو أرحم بينا من نفسنا، ومش هيضيع تعبك أبدًا. إن شاء الله ربنا يكتبلك الخير، ولو كان الخير في اللي نفسك فيه هتشوفيه، ولو كتبلك حاجة مختلفة فاعرفي إنها أكيد الأحسن ليكي.
+
+عايزك تفتكري إن النتيجة مجرد مرحلة في حياتك, لكنها أبدًا مش اللي بتحدد قيمتك ولا مستقبلك كله. قيمتك في تعبك واجتهادك وأخلاقك، ودي حاجات محدش يقدر ياخدها منك.
+
+ربنا يفرح قلبك يوم النتيجة، ويحققلك كل اللي بتتمنيه، ويجعل تعب الأيام اللي فاتت سبب في فرحة كبيرة تنسيكي كل لحظة تعب. وربنا يرزقك التوفيق في كل خطوة جاية من حياتك.
+
+بحبك جدًا، وفخور إن عندي أخت زيك، وربنا يديمك نعمة في حياتي ويحفظك ويكتبلك كل خير. 🤍🌹`;
+
+        // التحقق من الباسورد والدخول التلقائي مع الموسيقى
+        const audio = document.getElementById('audio-element');
+        let musicStarted = false;
+
+        function verifyPassword() {
+            const input = document.getElementById('password-input').value.trim();
+            const errorMsg = document.getElementById('error-message');
+            const envFlap = document.getElementById('env-flap');
+
+            if (input.toLowerCase() === "senior 26") {
+                errorMsg.style.display = "none";
+                
+                // فتح غطاء الظرف
+                envFlap.style.transform = "rotateX(180deg)";
+                
+                // تشغيل الأغنية فوراً
+                audio.play().then(() => {
+                    updatePlayBtnIcons(true);
+                }).catch(e => console.log("تم حجب التشغيل التلقائي من المتصفح"));
+
+                // انفجار القلوب
+                burstCelebrationHearts();
+
+                // الانتقال للصفحة الرئيسية بالتدريج بعد انتهاء حركة الظرف
+                setTimeout(() => {
+                    const loginScreen = document.getElementById('login-screen');
+                    loginScreen.style.opacity = "0";
+                    loginScreen.style.transform = "translateY(-100%)";
+                    
+                    document.getElementById('main-app').style.display = "block";
+                    
+                    setTimeout(() => {
+                        loginScreen.style.display = "none";
+                    }, 1000);
+                }, 800);
+
+            } else {
+                errorMsg.style.display = "block";
+                // هزة خفيفة للتنبيه بالخطأ
+                const card = document.querySelector('.login-card');
+                card.style.animation = "none";
+                setTimeout(() => {
+                    card.style.animation = "shake 0.4s ease";
+                }, 10);
+            }
+        }
+
+        // تأثير هزة الكارت عند الخطأ
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-8px); }
+                75% { transform: translateX(8px); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        // انفجار القلوب
+        function burstCelebrationHearts() {
+            const body = document.body;
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('celebration-heart');
+                heart.innerHTML = ['❤️', '💖', '💞', '✨'][Math.floor(Math.random() * 4)];
+                heart.style.left = "50%";
+                heart.style.top = "40%";
+                
+                const angle = Math.random() * Math.PI * 2;
+                const dist = Math.random() * 250 + 100;
+                const tx = Math.cos(angle) * dist + 'px';
+                const ty = Math.sin(angle) * dist + 'px';
+                
+                heart.style.setProperty('--tx', tx);
+                heart.style.setProperty('--ty', ty);
+                
+                body.appendChild(heart);
+                setTimeout(() => heart.remove(), 1500);
+            }
+        }
+
+        // فتح وإغلاق الرسالة
+        let isTyping = false;
+        let charIndex = 0;
+
+        function openLetterModal() {
+            const overlay = document.getElementById('letter-modal-overlay');
+            const modal = document.getElementById('letter-modal');
+            overlay.style.display = "flex";
+            setTimeout(() => {
+                modal.classList.add('active');
+                startTyping();
+            }, 50);
+        }
+
+        function closeLetterModal() {
+            const overlay = document.getElementById('letter-modal-overlay');
+            const modal = document.getElementById('letter-modal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                overlay.style.display = "none";
+            }, 400);
+        }
+
+        // تشغيل تأثير الـ Typewriter
+        function startTyping() {
+            if (isTyping) return;
+            isTyping = true;
+            document.getElementById('typed-text').innerHTML = "";
+            document.getElementById('sig').style.opacity = "0";
+            charIndex = 0;
+            typeNextChar();
+        }
+
+        function typeNextChar() {
+            if (charIndex < message.length) {
+                document.getElementById('typed-text').innerHTML += message.charAt(charIndex);
+                charIndex++;
+                
+                // سكرول تلقائي لأسفل مع الكتابة
+                const modal = document.getElementById('letter-modal');
+                modal.scrollTop = modal.scrollHeight;
+                
+                setTimeout(typeNextChar, 40);
+            } else {
+                isTyping = false;
+                document.getElementById('sig').style.opacity = "1";
+            }
+        }
+
+        // نظام تحكم مشغل الموسيقى
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                updatePlayBtnIcons(true);
+            } else {
+                audio.pause();
+                updatePlayBtnIcons(false);
+            }
+        }
+
+        function updatePlayBtnIcons(isPlaying) {
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
+            if (isPlaying) {
+                playIcon.style.display = "none";
+                pauseIcon.style.display = "block";
+            } else {
+                playIcon.style.display = "block";
+                pauseIcon.style.display = "none";
+            }
+        }
+
+        // تحديث الوقت المتقدم للموسيقى
+        audio.addEventListener('timeupdate', () => {
+            const progressFill = document.getElementById('progress-fill');
+            const currentTimeEl = document.getElementById('current-time');
+            const totalTimeEl = document.getElementById('total-time');
+
+            if (audio.duration) {
+                const percentage = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = percentage + '%';
+                
+                // تحديث العداد الزمني
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+                totalTimeEl.textContent = formatTime(audio.duration);
+            }
+        });
+
+        // تحويل الثواني لصيغة دقائق وثواني
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // تقديم/تأخير الصوت يدوياً من الشريط
+        function seekAudio(event) {
+            const progressWrapper = document.getElementById('progress-wrapper');
+            const rect = progressWrapper.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const width = rect.width;
+            const percentage = clickX / width;
+            
+            if (audio.duration) {
+                audio.currentTime = percentage * audio.duration;
+            }
+        }
+    </script>
+</body>
+</html>
